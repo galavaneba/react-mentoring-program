@@ -1,0 +1,67 @@
+@color-pink: #EB9385;
+@color-bedge: #F5EEDB;
+@color-white-green: #99C0BC;
+@color-white-purple: #937782;
+@color-light-green: #7a8488;
+@color-dark-green: #2D4249;
+
+.search-container {
+  background: @color-dark-green;
+  max-width: 1200px;
+  padding: 20px;
+}
+
+.search-container:after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.search-form > label {
+  color: white;
+  text-transform: uppercase;
+  font-size: 17px;
+  margin: 0;
+  padding-bottom: 20px;
+  display: inline-block;
+}
+
+.search-form:after {
+  content: '';
+  clear: both;
+  display: table;
+}
+
+.search-bar {
+  width: 100%;
+  line-height: 2.5em;
+  padding: 5px 10px;
+  background-color: black;
+  margin-bottom: 20px;
+  border: 0;
+  border-bottom: 2px solid @color-pink;
+  color: white;
+}
+
+.filter-container {
+  display: flex;
+  width: 70%;
+  float: left;
+  align-items: center;
+
+  > label {
+    color: white;
+    text-transform: uppercase;
+    font-size: 12px;
+  }
+}
+
+p {
+  color: white;
+  text-transform: uppercase;
+}
+
+.search-container .button {
+  float: right;
+}
+

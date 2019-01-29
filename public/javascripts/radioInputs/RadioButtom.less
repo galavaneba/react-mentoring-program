@@ -1,0 +1,68 @@
+@color-pink: #EB9385;
+@color-bedge: #F5EEDB;
+@color-white-green: #99C0BC;
+@color-white-purple: #937782;
+@color-light-green: #7a8488;
+@color-dark-gray: rgba(21, 32, 39, 0.8);
+@color-dark-green: #2D4249;
+
+.button {
+  margin-right: 5px;
+  border: 0;
+  border-radius: 3px;
+  text-align: center;
+  text-transform: uppercase;
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+.input-hide {
+  + input {
+    overflow: hidden;
+    visibility: hidden;
+    width: 0;
+    height: 0;
+    margin: 0;
+  }
+}
+
+.small {
+  min-width: 75px;
+  display: inline-block;
+  line-height: 1.75em;
+}
+
+.large {
+  min-width: 175px;
+  padding: 0 30px;
+  line-height: 2.5em;
+}
+
+.darkGray {
+  background-color: @color-dark-gray;
+  color: white;
+}
+
+.pink {
+  background-color: @color-pink;
+  color: white;
+}
+
+.white {
+  background-color: white;
+  color: #333;
+}
+
+.none {
+  color: #333;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+
+.radio-wrapper {
+  label {
+    padding: 0;
+    margin-left: 10px;
+  }
+}

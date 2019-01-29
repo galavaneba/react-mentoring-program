@@ -1,0 +1,54 @@
+@color-pink: #EB9385;
+@color-bedge: #F5EEDB;
+@color-white-green: #99C0BC;
+@color-white-purple: #937782;
+@color-dark-green: #2D4249;
+
+
+body {
+  padding: 0;
+  margin: 0;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: @color-white-green;
+}
+
+.header-wrapper {
+  background-color: #30454d;
+}
+
+.movie-container {
+  max-width: 1200px;
+  display: flex;
+  padding: 20px;
+}
+
+.movie-list-container {
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+}
+
+.movie-list-container:after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.movie-list {
+  max-width: 1200px;
+  padding: 0 20px;
+}
+
+.footer,
+.header {
+  max-width: 1200px;
+  padding: 20px;
+  color: @color-pink;
+  font-size: 16px;
+  background-color: @color-dark-green;
+  text-transform: lowercase;
+  font-weight: bold;
+}
