@@ -2,19 +2,21 @@ import React from 'react';
 import './movieCard.less';
 
 const MovieCard = props => {
+	const {src, title, genre, released} = props;
+
 	return (
 		<div className="movie-card">
 			<a href="/">
-				<img alt="movie-poster" />
+				<img src={src} alt="poster" />
 			</a>
 			<div className="movie-title">
-				{props.title}
+				{title}
 			</div>
 			<div className="movie-genre">
-				{props.genre}
+				{genre}
 			</div>
 			<div className="movie-release">
-				{props.released}
+				{released}
 			</div>
 		</div>
 	);

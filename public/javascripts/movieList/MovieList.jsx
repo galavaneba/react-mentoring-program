@@ -1,55 +1,25 @@
 import React from 'react';
 import MovieCard from "../movieCard/MovieCard";
+import './movieList.less';
 
-class MovieList extends React.Component {
+const MovieList = (props) => {
+	const moviesList = props.movies.map(function ({id, poster_path, title, genres, release_date}) {
+		return <MovieCard
+			key={id}
+			src={poster_path}
+			title={title}
+			genre={genres}
+			released={release_date}
+		/>
+	});
 
-	render() {
-		// const {disabled, children, className, id, value, name} = this.props;
+	console.log(props.movies);
 
-		return (
-			<div className="movie-list movie-list-container">
-				<MovieCard
-					title="Jackie Brown"
-					genre="drama"
-					released="2014"
-				/>
-				<MovieCard
-					title="One Night"
-					genre="comedy"
-					released="2015"
-				/>
-				<MovieCard
-					title="Sex in the city"
-					genre="fantasy"
-					released="2006"
-				/>
-				<MovieCard
-					title="Jango"
-					genre="travel"
-					released="2012"
-				/>
-			</div>
-		);
-	}
-}
+	return (
+		<div className="movie-list movie-list-container">
+			{moviesList}
+		</div>
+	);
+};
 
-// RadioButton.propTypes = {
-// 	id: PropTypes.string,
-// 	disabled: PropTypes.bool,
-// 	children: PropTypes.node.isRequired,
-// 	className: PropTypes.string,
-// 	value: PropTypes.string,
-// 	name: PropTypes.string
-// 	// onClick: PropTypes.func
-// };
-//
-// RadioButton.defaultProps = {
-// 	id: '',
-// 	disabled: false,
-// 	className: '',
-// 	name: '',
-// 	value: ''
-// 	// onClick() {
-// 	// }
-// };
 export default MovieList;
