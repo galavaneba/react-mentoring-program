@@ -30,6 +30,10 @@ class App extends React.Component {
 		this.setState({movies: response.data.data});
 	};
 
+	componentDidMount() {
+		this.onSearchSubmit('comedy');
+	}
+
 	render() {
 		return (
 			<div>
