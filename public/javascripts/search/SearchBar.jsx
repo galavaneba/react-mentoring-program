@@ -1,6 +1,5 @@
 import React from 'react';
 import Filter from './Filter';
-// import SearchBar from './SearchBar';
 import './style.less';
 
 class SearchBar extends React.Component {

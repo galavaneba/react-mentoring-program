@@ -2,12 +2,13 @@ import "@babel/polyfill";
 import React from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
-import SearchBar from './search/SearchBar';
+import ErrorBoundary from './errorBondary/ErrorBoundary';
 import Header from "./header/Header";
+import SearchBar from './search/SearchBar';
 import SortBar from './sortBar/SortBar';
+import MovieList from "./movieList/MovieList";
 import Footer from './footer/Footer';
 import '../stylesheets/style.less';
-import MovieList from "./movieList/MovieList";
 
 class App extends React.Component {
 	constructor(props) {
@@ -16,10 +17,6 @@ class App extends React.Component {
 		this.state = {
 			movies: [],
 		};
-	}
-
-	componentDidMount() {
-		this.onSearchSubmit('comedy');
 	}
 
 	 onSearchSubmit = async term => {
@@ -36,13 +33,20 @@ class App extends React.Component {
 	render() {
 		return (
 			<div>
-				<div className="header-wrapper">
-					<Header />
-					<SearchBar onSubmit={e => this.onSearchSubmit(e)}/>
-				</div>
-				<SortBar results={this.state.movies.length}/>
-				<MovieList movies={this.state.movies}/>
-				<Footer />
+				<ErrorBoundary>
+					<div className="header-wrapper">
+						<Header />
+						<ErrorBoundary>
+							<SearchBar onSubmit={e => this.onSearchSubmit(e)}/>
+						</ErrorBoundary>
+					</div>
+
+					<SortBar results={this.state.movies.length}/>
+					<ErrorBoundary>
+						<MovieList movies={this.state.movies}/>
+					</ErrorBoundary>
+					<Footer />
+				</ErrorBoundary>
 			</div>
 		);
 	}

@@ -13,8 +13,6 @@ const MovieList = (props) => {
 		/>
 	});
 
-	console.log(props.movies);
-
 	return (
 		<div className="movie-list movie-list-container">
 			{moviesList}
