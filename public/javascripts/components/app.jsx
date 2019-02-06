@@ -2,11 +2,13 @@ import "@babel/polyfill";
 import React from 'react';
 import axios from 'axios';
 import ErrorBoundary from './errorBondary/ErrorBoundary';
+import { BrowserRouter, Switch, Route} from "react-router-dom";
 import Header from "./header/Header";
-import Footer from './footer/Footer';
 import SearchBar from './search/SearchBar';
 import SortBar from './sortBar/SortBar';
+import Movie from "./moviePage/Movie";
 import MovieList from './movieList/MovieList';
+import Footer from './footer/Footer';
 import '../../stylesheets/style.less';
 
 class App extends React.Component {
@@ -29,30 +31,42 @@ class App extends React.Component {
 		this.setState({movies: response.data.data});
 	};
 
-	componentDidMount() {
-		this.onSearchSubmit('');
-	}
-
 	render() {
 		return (
 			<div>
-				<ErrorBoundary>
-					<div className="header-wrapper">
-						<Header />
-
+				<BrowserRouter>
+					<div>
 						<ErrorBoundary>
-							<SearchBar onSubmit={e => this.onSearchSubmit(e)}/>
+							<div className="header-wrapper">
+								<Header />
+
+								<ErrorBoundary>
+									<Switch>
+										<Route
+											exact
+											path="/"
+											component={() => <SearchBar onSubmit={e => this.onSearchSubmit(e)}/>}
+										/>
+										<Route
+											exact
+											path="/movie"
+											component={() => <Movie/>}
+										/>
+										<Movie />
+									</Switch>
+								</ErrorBoundary>
+							</div>
+
+							<SortBar />
+
+							<ErrorBoundary>
+								<MovieList />
+							</ErrorBoundary>
+
+							<Footer />
 						</ErrorBoundary>
 					</div>
-
-					<SortBar />
-
-					<ErrorBoundary>
-						<MovieList />
-					</ErrorBoundary>
-
-					<Footer />
-				</ErrorBoundary>
+				</BrowserRouter>
 			</div>
 		);
 	}

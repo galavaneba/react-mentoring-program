@@ -1,18 +1,21 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import MovieCard from "../movieCard/MovieCard";
-import { fetchMovies } from '../../actions';
+import { fetchMovies, selectMovie } from '../../actions';
 import './movieList.less'
 
 class MovieList extends React.Component {
 	 moviesList () {
-	 	return this.props.movies.map(function ({id, poster_path, title, genres, release_date}) {
+	 	const props = this.props;
+
+	 	return this.props.movies.map(function (movie) {
 			return <MovieCard
-				key={id}
-				src={poster_path}
-				title={title}
-				genre={genres}
-				released={release_date}
+				key={movie.id}
+				src={movie.poster_path}
+				title={movie.title}
+				genre={movie.genres}
+				released={movie.release_date}
+				onClick={()=> props.selectMovie(movie)}
 			/>
 		});
 	 }
@@ -22,6 +25,10 @@ class MovieList extends React.Component {
 	 }
 
 	render() {
+	 	if(!this.props.movies) {
+			return <div> Loading... </div>
+		}
+
 		return (
 			<div className="movie-list movie-list-container">
 				{this.moviesList()}
@@ -34,6 +41,6 @@ const mapToStateProps = (state) => {
 	return {movies: state.movies};
 };
 
-export default connect(mapToStateProps, { fetchMovies })(MovieList);
+export default connect(mapToStateProps, { fetchMovies, selectMovie })(MovieList);
 
 

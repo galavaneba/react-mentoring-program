@@ -25,8 +25,18 @@ const moviesReducer = (state = [], action) => {
 	}
 };
 
+const movieSelectReducer = (state = null, action) => {
+	switch (action.type) {
+		case 'SELECTED_MOVIE':
+			return action.payload;
+		default:
+			return state;
+	}
+};
+
 export default combineReducers({
 	movies: moviesReducer,
 	searchBy: filteredSearchReducer,
-	sortBy: sortedByReducer
+	sortBy: sortedByReducer,
+	selectedMovie: movieSelectReducer
 });

@@ -1,11 +1,23 @@
+@color-pink: #EB9385;
+@color-bedge: #F5EEDB;
+@color-white-green: #99C0BC;
+@color-white-purple: #937782;
+@color-dark-green: #2D4249;
+
 .movie-container {
   max-width: 1200px;
   display: flex;
+  position: relative;
+  z-index: 1;
 }
 
 .movie-poster {
   flex: 1;
-  margin-right: 10px;
+  margin-right: 40px;
+
+  img {
+    width: 100%;
+  }
 }
 
 .movie-content {
@@ -13,10 +25,16 @@
   color: white;
 }
 
+.movie-title {
+  margin: 0;
+  padding: 0 0 20px 0;
+  color: @color-pink;
+}
+
 .movie-metadata {
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 
   span {
-    margin-right: 40px;
+    margin-right: 30px;
   }
 }
