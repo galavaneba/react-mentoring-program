@@ -4,19 +4,18 @@ import './RadioButtom.less';
 // import classNames from 'classnames';
 
 class RadioButton extends React.PureComponent {
-	// onClick = () => {
-	// 	if (!this.props.disabled) {
-	// 		this.props.onClick();
-	// 	}
-	// };
+	onClick = () => {
+		this.props.onClick();
+	};
 
 	render() {
 		const {disabled, children, className, id, value, name} = this.props;
 
 		return (
-			<div className="radio-wrapper">
+			<div className="radio-wrapper" >
 				<label htmlFor={id}
-					   className={className}>
+					   className={className}
+					   onClick={this.onClick}>
 					{children}
 				</label>
 				<input
@@ -25,7 +24,6 @@ class RadioButton extends React.PureComponent {
 					value={value}
 					name={name}
 					disabled={disabled}
-					// onClick={this.onClick}
 				 />
 			</div>
 		);

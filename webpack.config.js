@@ -7,7 +7,7 @@ module.exports = function(env, options) {
 
 	const config = {
 		context: path.join(__dirname, "public"),
-		entry: './javascripts/app.jsx',
+		entry: './javascripts/index.jsx',
 		mode: isProduction ? "production" : "development",
 		devtool: isProduction ? "none" : "source-map",
 		module: {
@@ -28,7 +28,7 @@ module.exports = function(env, options) {
 		},
 		plugins: [
 			new HtmlWebpackPlugin({
-				title: "App",
+				title: "Index",
 				hash: true,
 				template: path.resolve(__dirname, "./public/index.html")
 			}),

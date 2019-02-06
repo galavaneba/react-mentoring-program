@@ -1,14 +1,13 @@
 import "@babel/polyfill";
 import React from 'react';
-import ReactDOM from 'react-dom';
 import axios from 'axios';
 import ErrorBoundary from './errorBondary/ErrorBoundary';
 import Header from "./header/Header";
+import Footer from './footer/Footer';
 import SearchBar from './search/SearchBar';
 import SortBar from './sortBar/SortBar';
-import MovieList from "./movieList/MovieList";
-import Footer from './footer/Footer';
-import '../stylesheets/style.less';
+import MovieList from './movieList/MovieList';
+import '../../stylesheets/style.less';
 
 class App extends React.Component {
 	constructor(props) {
@@ -19,11 +18,11 @@ class App extends React.Component {
 		};
 	}
 
-	 onSearchSubmit = async term => {
+	onSearchSubmit = async term => {
 		const response = await axios.get('http://react-cdp-api.herokuapp.com/movies', {
 			params: {
 				search: term,
-				searchBy: 'genre'
+				searchBy: 'title'
 			}
 		});
 
@@ -31,7 +30,7 @@ class App extends React.Component {
 	};
 
 	componentDidMount() {
-		this.onSearchSubmit('comedy');
+		this.onSearchSubmit('');
 	}
 
 	render() {
@@ -40,15 +39,18 @@ class App extends React.Component {
 				<ErrorBoundary>
 					<div className="header-wrapper">
 						<Header />
+
 						<ErrorBoundary>
 							<SearchBar onSubmit={e => this.onSearchSubmit(e)}/>
 						</ErrorBoundary>
 					</div>
 
-					<SortBar results={this.state.movies.length}/>
+					<SortBar />
+
 					<ErrorBoundary>
-						<MovieList movies={this.state.movies}/>
+						<MovieList />
 					</ErrorBoundary>
+
 					<Footer />
 				</ErrorBoundary>
 			</div>
@@ -56,10 +58,4 @@ class App extends React.Component {
 	}
 }
 
-ReactDOM.render(
-	<App />,
-	document.getElementById('root')
-);
-
-
-
+export default App;
