@@ -1,19 +1,5 @@
 import axios from "axios";
 
-export const searchMovies = term => {
-	return {
-		type: 'SEARCHED_MOVIES',
-		payload: { term }
-	}
-};
-
-export const filterSearch = (filter) => {
-	return {
-		type: 'FILTERED_SEARCH',
-		payload: { filter }
-	};
-};
-
 export const sortMovies = (sortBy) => {
 	return {
 		type: 'SORTED_MOVIES',
@@ -28,11 +14,20 @@ export const selectMovie = movie => {
 	}
 };
 
-export const fetchMovies = term => async function (dispatch) {
+export const fetchCurrentMovie = (movieId = '') => async function (dispatch) {
+	const response = await axios.get(`http://react-cdp-api.herokuapp.com/movies/${movieId}`);
+
+	dispatch({
+		type: 'SELECTED_MOVIE',
+		payload: response.data
+	})
+};
+
+export const fetchMovies = (params = {searchFilter: 'title', searchTerm: ''}) => async function (dispatch) {
 	const response = await axios.get('http://react-cdp-api.herokuapp.com/movies', {
 		params: {
-			search: term,
-			searchBy: 'title'
+			search: params.searchTerm,
+			searchBy: params.searchFilter
 		}
 	});
 

@@ -1,11 +1,12 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import './movieStyle.less';
 
 const Movie = props => {
-	if( !props.movie ) {
-		return null;
+	if(!props.movie ) {
+		return <div>No found movie</div>;
 	}
+
+	console.log(props);
 
 	const {poster_path, title, tagline, release_date, runtime, overview} = props.movie;
 
@@ -33,10 +34,4 @@ const Movie = props => {
 	);
 };
 
-const mapStateToProps = (state) => {
-	return {
-		movie: state.selectedMovie
-	}
-};
-
-export default connect(mapStateToProps)(Movie);
+export default Movie;

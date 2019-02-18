@@ -39,7 +39,7 @@ class SortBar extends React.Component {
 
 const mapStateToProps = state => {
 	return {
-		movies: state.movies,
+		movies: Object.values(state.movies),
 		sortBy: state.sortBy
 	};
 };

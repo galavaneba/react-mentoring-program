@@ -1,4 +1,7 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { Field, reduxForm } from 'redux-form';
+import { fetchMovies } from "../../actions";
 import Filter from './Filter';
 import './style.less';
 
@@ -6,33 +9,72 @@ class SearchBar extends React.Component {
 	constructor(props) {
 		super(props);
 
-		this.state = {term: ''};
+		this.onSubmit = this.onSubmit.bind(this);
 	}
 
-	onFormSubmit(e){
-		e.preventDefault();
-		this.props.onSubmit(this.state.term);
+	onSubmit(formValues) {
+		const filter = formValues.searchFilter ? formValues.searchFilter : 'title';
+		const params = {...formValues, 'searchFilter': filter};
+
+		this.props.fetchMovies(params);
+	};
+
+	renderInput({ input, label, id, className, type }) {
+		return (
+			<label htmlFor={id}>
+				{label}
+				<input
+					{...input}
+					type={type}
+					id={id}
+					className={className}
+					placeholder={label}
+					autoComplete="off"
+					/>
+			</label>
+		);
 	};
 
 	render() {
 		return (
 			<div className="search-container">
-				<form onSubmit={(e) => this.onFormSubmit(e)}
-					className="search-form">
-					<label htmlFor="search-bar">Find your movie</label>
-					<input type="text"
+				<form className="search-form"
+					onSubmit={this.props.handleSubmit(this.onSubmit)}>
+					<Field name="searchTerm"
+						   component={this.renderInput}
+						   label="Find your movie"
 						   id="search-bar"
 						   className="search-bar"
-						   placeholder="Find movie"
-						   value={this.state.term}
-						   onChange={(e) => this.setState({term: e.target.value})}
-					/>
+						   type="text"/>
+
 					<button className="button pink large" type="submit">Search</button>
-					<Filter />
+					<div className="filter-container">
+						<p>Search by</p>
+						<Field name="searchFilter"
+							   component={Filter}
+							   label="Title"
+							   id="filter-title"
+							   value="title"
+							   type="radio"
+							   className="button small pink input-hide"
+						/>
+						<Field name="searchFilter"
+							   component={Filter}
+							   label="Genre"
+							   id="filter-title"
+							   value="genres"
+							   type="radio"
+							   className="button small darkGray input-hide"
+						/>
+					</div>
 				</form>
 			</div>
 		);
 	};
 }
 
-export default SearchBar;
+const formWrapped = reduxForm({
+	form: 'searchMovie'
+})(SearchBar);
+
+export default connect(null, { fetchMovies })(formWrapped);

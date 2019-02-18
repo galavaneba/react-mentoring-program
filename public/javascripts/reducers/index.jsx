@@ -1,12 +1,6 @@
+import _ from 'lodash';
 import { combineReducers } from 'redux';
-
-const filteredSearchReducer = (filter = 'title', action) => {
-	if (action.type === 'FILTERED_SEARCH') {
-		return action.payload.filter;
-	}
-
-	return filter;
-};
+import { reducer as formReducer} from 'redux-form';
 
 const sortedByReducer = (sortBy = null, action) => {
 	if (action.type === 'SORTED_MOVIES') {
@@ -16,10 +10,10 @@ const sortedByReducer = (sortBy = null, action) => {
 	return sortBy;
 };
 
-const moviesReducer = (state = [], action) => {
+const moviesReducer = (state = {}, action) => {
 	switch (action.type) {
 		case 'FETCH_MOVIES':
-			return action.payload;
+			return {..._.keyBy(action.payload, 'id')};
 		default:
 			return state;
 	}
@@ -36,7 +30,7 @@ const movieSelectReducer = (state = null, action) => {
 
 export default combineReducers({
 	movies: moviesReducer,
-	searchBy: filteredSearchReducer,
 	sortBy: sortedByReducer,
-	selectedMovie: movieSelectReducer
+	selectedMovie: movieSelectReducer,
+	form: formReducer
 });
