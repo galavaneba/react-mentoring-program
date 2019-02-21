@@ -1,0 +1,3 @@
+export const SORTED_MOVIES = 'SORTED_MOVIES';
+export const SELECTED_MOVIE = 'SELECTED_MOVIE';
+export const FETCH_MOVIES = 'FETCH_MOVIES';
