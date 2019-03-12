@@ -1,4 +1,3 @@
-import _ from 'lodash';
 import { combineReducers } from 'redux';
 import { reducer as formReducer} from 'redux-form';
 
@@ -13,7 +12,7 @@ const sortedByReducer = (sortBy = null, action) => {
 const moviesReducer = (state = {}, action) => {
 	switch (action.type) {
 		case 'FETCH_MOVIES':
-			return {..._.keyBy(action.payload, 'id')};
+			return action.payload;
 		default:
 			return state;
 	}

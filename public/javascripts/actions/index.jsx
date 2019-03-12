@@ -25,7 +25,7 @@ export const fetchCurrentMovie = (movieId = '') => async function (dispatch) {
 };
 
 export const fetchMovies = (params = {searchFilter: 'title', searchTerm: ''}) => async function (dispatch) {
-	const response = await axios.get('http://react-cdp-api.herokuapp.com/movies', {
+	const response = await axios.get('http://react-cdp-api.herokuapp.com/movies?limit=20', {
 		params: {
 			search: params.searchTerm,
 			searchBy: params.searchFilter

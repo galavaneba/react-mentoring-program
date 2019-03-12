@@ -10,6 +10,9 @@ module.exports = function(env, options) {
 		entry: './javascripts/index.jsx',
 		mode: isProduction ? "production" : "development",
 		devtool: isProduction ? "none" : "source-map",
+		output: {
+			publicPath: '/',
+		},
 		module: {
 			rules: [{
 				test: /\.jsx?$/,
@@ -25,6 +28,9 @@ module.exports = function(env, options) {
 		},
 		resolve: {
 			extensions: [".js", ".jsx"]
+		},
+		devServer: {
+			historyApiFallback: true,
 		},
 		plugins: [
 			new HtmlWebpackPlugin({

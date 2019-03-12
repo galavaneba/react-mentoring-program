@@ -9,22 +9,23 @@ class RadioButton extends React.PureComponent {
 	};
 
 	render() {
-		const {disabled, children, className, id, value, name} = this.props;
+		const {disabled, label, className, id, value, name} = this.props;
 
 		return (
 			<div className="radio-wrapper" >
-				<label htmlFor={id}
-					   className={className}
-					   onClick={this.onClick}>
-					{children}
-				</label>
 				<input
 					type="radio"
 					id={id}
 					value={value}
 					name={name}
 					disabled={disabled}
-				 />
+				/>
+				<label htmlFor={id}
+					   className={className}
+					   onClick={this.onClick}>
+					{label}
+				</label>
+
 			</div>
 		);
 	}
@@ -33,7 +34,7 @@ class RadioButton extends React.PureComponent {
 RadioButton.propTypes = {
 	id: PropTypes.string,
 	disabled: PropTypes.bool,
-	children: PropTypes.node.isRequired,
+	label: PropTypes.string,
 	className: PropTypes.string,
 	value: PropTypes.string,
 	name: PropTypes.string
@@ -43,6 +44,7 @@ RadioButton.propTypes = {
 RadioButton.defaultProps = {
 	id: '',
 	disabled: false,
+	label: '',
 	className: '',
 	name: '',
 	value: ''

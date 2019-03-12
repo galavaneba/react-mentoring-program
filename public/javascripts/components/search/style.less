@@ -4,12 +4,14 @@
 @color-white-purple: #937782;
 @color-light-green: #7a8488;
 @color-dark-green: #2D4249;
+@color-dark-gray: #152027;
 
 .search-container {
-  max-width: 1200px;
+  max-width: 1024px;
   padding: 20px;
   position: relative;
   z-index: 1;
+  margin: auto;
 }
 
 .search-container:after {
@@ -54,6 +56,22 @@
     color: white;
     text-transform: uppercase;
     font-size: 12px;
+  }
+
+  input {
+    visibility: hidden;
+    width: 0;
+    height: 0;
+  }
+
+  input + label {
+    background-color: @color-dark-gray;
+    color: white;
+  }
+
+  input:checked + label {
+    background: @color-pink;
+    color: white;
   }
 }
 

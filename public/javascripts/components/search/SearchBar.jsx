@@ -36,6 +36,7 @@ class SearchBar extends React.Component {
 	};
 
 	render() {
+
 		return (
 			<div className="search-container">
 				<form className="search-form"
@@ -56,15 +57,15 @@ class SearchBar extends React.Component {
 							   id="filter-title"
 							   value="title"
 							   type="radio"
-							   className="button small pink input-hide"
+							   className="button small input-hide"
 						/>
 						<Field name="searchFilter"
 							   component={Filter}
 							   label="Genre"
-							   id="filter-title"
+							   id="filter-genres"
 							   value="genres"
 							   type="radio"
-							   className="button small darkGray input-hide"
+							   className="button small input-hide"
 						/>
 					</div>
 				</form>
@@ -77,4 +78,10 @@ const formWrapped = reduxForm({
 	form: 'searchMovie'
 })(SearchBar);
 
-export default connect(null, { fetchMovies })(formWrapped);
+const mapStateToProps = (state) => {
+	return {
+		state
+	};
+};
+
+export default connect(mapStateToProps, { fetchMovies })(formWrapped);

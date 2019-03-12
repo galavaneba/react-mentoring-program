@@ -1,7 +1,7 @@
 import React from 'react';
 import ErrorBoundary from '../errorBondary/ErrorBoundary';
 import { connect } from 'react-redux';
-import { fetchCurrentMovie, fetchMovies, selectMovie } from "../../actions";
+import { fetchCurrentMovie } from "../../actions";
 import Movie from "./Movie";
 import SortBar from '../sortBar/SortBar';
 import MovieList from '../movieList/MovieList';
